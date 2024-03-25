@@ -10,11 +10,16 @@ public class Datasupplier {
     }
     @DataProvider
     public String[] dp1(){
-        String[] name = new String[]{
+        /*String[] name = new String[]{
                 "Apoorv",
                 "Jain",
                 "Agrawal"
         };
-        return name;
-    }
+        return name;*/
+
+        return new String[]{
+                "Apoorv",
+                "Jain",
+                };
+        }
 }
