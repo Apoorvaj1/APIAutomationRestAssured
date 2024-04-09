@@ -6,12 +6,14 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
+
 import static org.assertj.core.api.Assertions.assertThat;
 public class RestfulBooker {
     RequestSpecification request_spec;
@@ -35,7 +37,9 @@ public class RestfulBooker {
         vr.body("token", Matchers.notNullValue());
         String token_1 = vr.extract().path("token");
         System.out.println("Using vr -> token1 value is "+token_1);
-        response.prettyPrint();
+        System.out.println("-----------++++++++++++++++++++++-----------------");
+        response.getBody().prettyPrint();
+        System.out.println("----------+++++++++++++++++++++++------------------");
         response.then().statusCode(200);
         token = response.then().extract().path("token");
         System.out.println("Token is "+token);
@@ -75,6 +79,18 @@ public class RestfulBooker {
         System.out.println("--------------------ID----------------------");
         id = response.then().extract().path("bookingid");
         System.out.println("Id is "+id);
+        long time = response.getTimeIn(TimeUnit.SECONDS);
+        System.out.println("Time is: "+time);
+        JsonPath json = new JsonPath(response.asString());
+        int s  = json.getByte("size()");
+        System.out.println(s);
+        int status = response.getStatusCode();
+        System.out.println("Status is: "+status);
+        String status2 = response.getStatusLine();
+        System.out.println(status2);
+
+        String lastname_value =json.getString("booking.lastname");
+        System.out.println("LASTNAME VALUE: "+lastname_value);
     }
     @Test
     public void getDetailsbyID(){

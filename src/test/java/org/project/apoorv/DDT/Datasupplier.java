@@ -9,7 +9,7 @@ public class Datasupplier {
         System.out.println(s);
     }
     @DataProvider
-    public String[] dp1(){
+    public Object[] dp1(){
         /*String[] name = new String[]{
                 "Apoorv",
                 "Jain",

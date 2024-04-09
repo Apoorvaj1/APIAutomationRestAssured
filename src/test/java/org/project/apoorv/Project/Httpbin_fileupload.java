@@ -16,7 +16,7 @@ public class Httpbin_fileupload {
         requestSpecification.baseUri("https://httpbin.org/post");
 
         requestSpecification.multiPart("abc",file);
-        Response response = requestSpecification.post();
+        Response response = requestSpecification.when().post();
         response.prettyPrint();
         response.then().statusCode(200);
     }

@@ -24,12 +24,13 @@ public class ValidateJsonResponseBody {
 		requestSpec.basePath("api/users?page=2");
 		
 		//create/perform get request
-		Response response = requestSpec.get();
+		Response response = requestSpec.when().get();
+		response.getBody().prettyPrint();
 		
 		//read response body
-		ResponseBody responseBody =  response.getBody();
-		
-		String responseString = responseBody.asString();
+
+
+		String responseString = response.getBody().asString();
 		
 		//print response body
 		System.out.println("Response body:" + responseString);
@@ -40,10 +41,11 @@ public class ValidateJsonResponseBody {
 		
 		//get json path view of response body
 		
-		JsonPath jsonPathView  = responseBody.jsonPath();
+		JsonPath jsonPathView  = response.jsonPath();
 		
 		//x.data[4].first_name
 		String firstName = jsonPathView.get("data[0].first_name");
+		System.out.println(firstName);
 		
 		System.out.println("email address:"+ jsonPathView.get("data[1].avatar"));
 	

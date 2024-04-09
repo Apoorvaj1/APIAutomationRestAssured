@@ -35,6 +35,8 @@ public class ValidateResponseHeader {
 		String contentType = response.getHeader("Content-Type");
 		System.out.println("Header value is "+contentType);
 
+		response.getBody().prettyPrint();
+
 
 		System.out.println("-------------------ABC-----------------");
 		ValidatableResponse validatableResponse =  response.then();

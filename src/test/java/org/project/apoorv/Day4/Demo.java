@@ -63,7 +63,7 @@ public class Demo {
 
         String payload1 = "{\n"
 
-                + " \"firstname\" : \"Ajju\",\n"
+                + " \"firstname\" : \"Apoorv\",\n"
 
                 + " \"lastname\" : \"Sharma\",\n"
 
@@ -87,7 +87,7 @@ public class Demo {
 
         requestSpecification.baseUri("https://restful-booker.herokuapp.com");
 
-        requestSpecification.basePath("/booking/2586");
+        requestSpecification.basePath("/booking/5526");
 
         requestSpecification.contentType(ContentType.JSON);
 
@@ -102,6 +102,13 @@ public class Demo {
 //Validate Response
 
         validatableResponse = response.then().log().all();
+        System.out.println("--------------------------------------");
+        String response123 = response.getBody().asString();
+        System.out.println("Response is "+response123);
+
+        System.out.println("--------------------------------------");
+
+        response.getBody().prettyPrint();
 
         validatableResponse.statusCode(200);
         String name = validatableResponse.extract().path("firstname");
